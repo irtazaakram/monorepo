@@ -14,6 +14,7 @@ jobs:
   call-upgrade-python-requirements-workflow:
     runs-on: ubuntu-20.04
     strategy:
+      fail-fast: false
       matrix:
         dir: ['python_app_1', 'python_app_2']
     steps:
