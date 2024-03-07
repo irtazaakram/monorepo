@@ -1,0 +1,48 @@
+name: Python CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches:
+    - '**'
+
+jobs:
+  run_tests:
+    name: Tests
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-20.04]
+        python-version: ['3.8','3.12']
+        toxenv: [django42, quality]
+        dir: ['python_app_1', 'python_app_2']
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: setup python
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install pip
+      working-directory: ${{ matrix.dir }}
+      run: pip install -r requirements/pip.txt
+
+    - name: Install Dependencies
+      working-directory: ${{ matrix.dir }}
+      run: pip install -r requirements/ci.txt
+
+    - name: Run Tests
+      working-directory: ${{ matrix.dir }}
+      env:
+        TOXENV: ${{ matrix.toxenv }}
+      run: tox
+
+    - name: Run Coverage
+      if: matrix.python-version == '3.8' && matrix.toxenv=='py38-django42'
+      uses: codecov/codecov-action@v3
+      with:
+        flags: unittests
+        fail_ci_if_error: true
+
