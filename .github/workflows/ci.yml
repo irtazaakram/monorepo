@@ -28,8 +28,6 @@ jobs:
 
     - name: Run Tests
       working-directory: ${{ matrix.dir }}
-      env:
-        TOXENV: ${{ matrix.toxenv }}
       run: |
         pip install -r requirements_dev.txt
         tox
