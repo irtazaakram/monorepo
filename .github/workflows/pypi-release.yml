@@ -34,6 +34,8 @@ jobs:
       - name: Publish to PyPi
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
+          verbose: true
+          verify-metadata: false
           packages-dir: ${{ matrix.dir }}
           user: __token__
           password: ${{ secrets.PYPI_UPLOAD_TOKEN }}
