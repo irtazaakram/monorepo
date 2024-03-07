@@ -6,7 +6,6 @@
 import unittest
 from click.testing import CliRunner
 
-from python_app_1 import python_app_1
 from python_app_1 import cli
 
 

@@ -5,9 +5,6 @@
 import pytest
 
 
-from python_app_2 import python_app_2
-
-
 @pytest.fixture
 def response():
     """Sample pytest fixture.
