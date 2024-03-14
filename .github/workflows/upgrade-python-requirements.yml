@@ -27,7 +27,7 @@ jobs:
       - name: make upgrade
         working-directory: ${{ matrix.dir }}
         run: |
-          pip install pip pip-compile
+          pip install pip pip-tools
           pip-compile --upgrade -o requirements/base.txt requirements/base.in
     # Do not run on forks
     # if: github.repository == 'irtazaakram/monorepo'
