@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        dir: ['python_app_1', 'python_app_2']
+        dir: ['monorepo/python_app_1', 'monorepo/python_app_1']
     steps:
       - name: setup python
         uses: actions/setup-python@v5
